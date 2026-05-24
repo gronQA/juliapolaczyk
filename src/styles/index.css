@@ -1,0 +1,93 @@
+@import "tailwindcss";
+
+@theme {
+  --color-background: #1C1714;
+  --color-background-alt: #251E19;
+  --color-foreground: #E8DFD4;
+  --color-muted: #3D332B;
+  --color-muted-foreground: #9C8B7A;
+  --color-accent: #C9A962;
+  --color-accent-secondary: #8B2635;
+  --color-accent-foreground: #1C1714;
+  --color-border: #4A3F35;
+
+  --font-heading: "Cormorant Garamond", serif;
+  --font-body: "Crimson Pro", serif;
+  --font-display: "Cinzel", serif;
+
+  --radius-default: 4px;
+}
+
+@layer base {
+  body {
+    @apply bg-background text-foreground font-body leading-relaxed;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-heading tracking-tight;
+  }
+}
+
+@layer components {
+  .arch-top {
+    border-radius: 40% 40% 0 0 / 20% 20% 0 0;
+  }
+
+  .ornate-frame {
+    @apply relative border border-border p-8 md:p-12 bg-background-alt/50;
+  }
+
+  .ornate-frame::before,
+  .ornate-frame::after {
+    content: "";
+    @apply absolute w-10 h-10 border-2 border-accent pointer-events-none;
+  }
+
+  .ornate-frame::before {
+    @apply -top-px -left-px border-r-0 border-b-0;
+  }
+
+  .ornate-frame::after {
+    @apply -bottom-px -right-px border-l-0 border-t-0;
+  }
+
+  .ornate-divider {
+    @apply relative h-px w-full my-8 bg-linear-to-r from-transparent via-accent to-transparent;
+  }
+
+  .ornate-divider::before {
+    content: "✶";
+    @apply absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 bg-background px-3 text-accent text-xs;
+  }
+
+  .drop-cap::first-letter {
+    @apply float-left mr-4 text-7xl font-display leading-[0.8] text-accent;
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+  }
+
+  .brass-button {
+    @apply h-12 px-8 rounded-sm font-display text-xs uppercase tracking-[0.2em] text-background bg-linear-to-b from-[#D4B872] via-[#C9A962] to-[#B8953F] transition-all duration-300 hover:brightness-110 active:scale-95 shadow-[inset_0_1px_0_rgba(255,255,255,0.2),inset_0_-1px_0_rgba(0,0,0,0.2),0_2px_8px_rgba(0,0,0,0.3)] hover:shadow-[0_4px_12px_rgba(201,169,98,0.3)];
+    text-shadow: 1px 1px 1px rgba(0,0,0,0.4), -1px -1px 1px rgba(255,255,255,0.1);
+  }
+
+  .brass-button-outline {
+    @apply h-12 px-8 rounded-sm border-2 border-accent font-display text-xs uppercase tracking-[0.2em] text-accent bg-transparent transition-all duration-300 hover:bg-accent-secondary hover:border-accent-secondary hover:text-foreground active:scale-95;
+  }
+
+  .sepia-img {
+    @apply filter sepia-[0.6] contrast-[0.95] brightness-[0.9] transition-all duration-700 ease-out hover:sepia-0 hover:contrast-100 hover:brightness-100 hover:scale-105;
+  }
+
+  .brass-scrollbar::-webkit-scrollbar {
+    height: 4px;
+  }
+  .brass-scrollbar::-webkit-scrollbar-track {
+    @apply bg-border/20;
+  }
+  .brass-scrollbar::-webkit-scrollbar-thumb {
+    @apply bg-accent/50 rounded-full;
+  }
+  .brass-scrollbar::-webkit-scrollbar-thumb:hover {
+    @apply bg-accent;
+  }
+}
