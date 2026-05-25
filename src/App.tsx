@@ -5,7 +5,7 @@ import PrivacyPolicy from './pages/PrivacyPolicy';
 
 const App: React.FC = () => {
   return (
-    <Router basename="/juliapolaczyk/">
+    <Router basename={import.meta.env.BASE_URL}>
       <Routes>
         <Route path="/" element={<HomePage />} />
         <Route path="/polityka-prywatnosci" element={<PrivacyPolicy />} />
